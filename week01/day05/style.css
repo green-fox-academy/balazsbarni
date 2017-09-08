@@ -1,0 +1,63 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+section {
+    width: 620px;
+    height: 1300px;
+    margin: 0 auto;
+    padding: 10px 0;
+    background-color: green;
+    display: block;
+}
+
+.headbox {
+    display: block;
+    height: 40px;
+    padding: 12px;
+    margin: 10px 0px;
+    background-color: yellow;
+}
+
+.mainbox {
+    display: inline-block;
+    vertical-align: top;
+    width: 305px;
+    height: 375px;
+    padding: 12px;
+    margin: 10px 0px;
+    background-color: yellow
+}
+
+.footbox {
+    display: block;
+    height: 160px;
+    padding: 12px;
+    margin-top: 10px;
+    background-color: tomato;
+       
+}
+
+.subboxtop {
+    display: inline-block;
+    vertical-align: top;
+    width: 48%;
+    height: 45;
+    margin-top: auto;
+    border: 2px solid black;
+}
+
+.subboxmain {
+    display: block;
+    width: 285px;
+    height: 140px;
+    margin-top: 40px;
+    border: 2px solid black;
+}
+
+.name {
+    display: block;
+
+}
