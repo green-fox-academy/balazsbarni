@@ -13,8 +13,10 @@ def list_matrix (widht, height):
     for i in range(widht):
         widht_list = []
         for j in range(height):
-            
-                widht_list.append ("0")
+            if j == i:
+                widht_list.append ("1")
+            else:
+                widht_list.append ("0")    
         height_list.append (widht_list)
     return height_list
 
@@ -22,4 +24,4 @@ def row_matrix (list_matrix):
     for row in list_matrix:
         print (row)
 
-row_matrix(list_matrix(4,5))
+row_matrix(list_matrix(4,4))
