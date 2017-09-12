@@ -4,7 +4,10 @@
 
 ag = [3, 4, 5, 6, 7]
 
-def double(ag):
-    return [i*2 for i in ag]
+for i in range(0,len(ag)):
+    ag[i] *= 2
 
-print(double(ag))
+#def double(ag):
+ #return [i*2 for i in ag]
+
+print(ag)
