@@ -21,7 +21,7 @@ out = ""
 for nr in not_so_cryptic_message:
     for no, code in hashmap.items():
         if nr == no:
-            out += code
+            out += code + (" ")
    
    
 print(out)
