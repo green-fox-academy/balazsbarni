@@ -14,12 +14,12 @@ accounts = [
 #  - amount to transfer
 #
 # Print "404 - account not found" if any of the account numbers don't exist
-#acc_num = int(input("Szamlaszam: "))
+acc_num = int(input("Szamlaszam: "))
 
-#def balance(items):
- #   for i in items:
-  #      if i['account_number'] == acc_num:
-   #         print(i['client_name'], i['balance'])
+def balance(items):
+    for i in items:
+        if i['account_number'] == acc_num:
+            print(i['client_name'], i['balance'])
 
 
 
