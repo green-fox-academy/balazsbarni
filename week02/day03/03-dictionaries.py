@@ -32,7 +32,10 @@ def transfer_money(accounts_list, acc_number):
         if i['account_number'] == acc_num:
             take_money(acc_num, amm_num, accounts)
             add_money(to_acc_num, amm_num, accounts)
-    print(accounts)
+        else:
+            print("404 - account not found")
+            break
+   
         
 def take_money(from_id, by_ammount, accounts_list):
     for i in accounts_list:
@@ -50,3 +53,4 @@ def add_money(to_id, by_ammount, accounts_list):
 #balance(accounts)
 
 transfer_money(accounts, acc_num)
+print(accounts)
