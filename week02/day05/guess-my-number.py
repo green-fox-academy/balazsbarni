@@ -1,8 +1,9 @@
 from random import randint
-random_number = randint(0,100)
-#print(random_number)
-lifes_nr = int(input("Enter how many tries you want: "))
 
+lifes_nr = int(input("Enter how many tries you want: "))
+range_nr = int(input("Enter range: "))
+random_number = randint(0,range_nr)
+#print(random_number)
 
 def guessing_game(number_of_lifes, random_nr):
     for tries in range(number_of_lifes):
