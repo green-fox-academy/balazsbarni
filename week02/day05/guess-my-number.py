@@ -1,18 +1,26 @@
 from random import randint
 random_number = randint(0,100)
-print(random_number)
-nr_lifes = 5
+#print(random_number)
+lifes_nr = int(input("Enter how many tries you want: "))
 
-for tries in range(nr_lifes):
-    nr_lifes_in = int(nr_lifes)
-    print(nr_lifes_in)
-    user_guess = int(input("Enter guess: "))
-    if nr_lifes - tries - 1 == 0: 
-        print("Out of lives!")
-    if user_guess == random_number:
-        print("Congrats, you won!")
-    elif user_guess < random_number:
-        print("Too low. You have " , nr_lifes - tries - 1  , "lives left.")
-    elif user_guess > random_number:
-        print("Too high. You have " , nr_lifes - tries - 1  , "lives left.")  
+
+def guessing_game(number_of_lifes, random_nr):
+    for tries in range(number_of_lifes):
+        nr_lifes_in = int(number_of_lifes - tries)
+        #print(nr_lifes_in)
+        user_guess = int(input("Enter guess: "))
+        if nr_lifes_in - 1 == 0: 
+            print("Out of lives!")
+            break
+        elif user_guess == random_nr:
+            print("Congrats, you won!")
+            break
+        elif user_guess < random_nr:
+            print("Too low. You have " , nr_lifes_in - 1 , "lives left.")
+            nr_lifes_in -= 1
+        elif user_guess > random_nr:
+            print("Too high. You have " , nr_lifes_in - 1  , "lives left.")
+            nr_lifes_in -= 1
+        
  
+guessing_game(lifes_nr , random_number)
