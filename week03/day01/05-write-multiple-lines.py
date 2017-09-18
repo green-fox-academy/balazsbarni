@@ -9,13 +9,15 @@
 
 
 def write_to_file():
-    path_parameter = input('Enter path: ')
-    word_parameter = str(input("Enter the text: "))
-    line_parameter = int(input("Enter the number of lines: "))
-    created_file = open(path_parameter, "a")
-    for i in range(line_parameter):
-        created_file.write(word_parameter)
-        created_file.write("\n")
-    
+    try:
+        path_parameter = input('Enter path: ')
+        word_parameter = str(input("Enter the text: "))
+        line_parameter = int(input("Enter the number of lines: "))
+        created_file = open(path_parameter, "a")
+        for i in range(line_parameter):
+            created_file.write(word_parameter)
+            created_file.write("\n")
+    except Exception:
+        print("")
 
 write_to_file()
