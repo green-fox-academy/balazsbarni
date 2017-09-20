@@ -11,6 +11,10 @@ canvas.pack()
 # draw 3 lines with that function.
 par_x = 100
 par_y = 200
-horizontal_line = canvas.create_line(par_x, par_y, (par_x + 50), par_y)
+
+def draw_horizontal_from_start(par_first, par_second):
+    horizontal_line = canvas.create_line(par_first,  par_second, (par_first + 50), par_second)
+
+draw_horizontal_from_start(par_x, par_y)
 
 root.mainloop()
