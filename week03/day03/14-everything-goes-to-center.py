@@ -18,10 +18,12 @@ def draw_line_to_center (par_x, par_y):
 
 for line in range(0, width, 20):
     for row in range(0, height, 20):
-        draw_line_to_center(0, line)
+        draw_line_to_center(line, height)
+        draw_line_to_center(height, row)
+        draw_line_to_center(line, 0)
+        draw_line_to_center(0, row)
         
-        draw_line_to_center(row, 0)
-    
+        
 
 
 
