@@ -12,7 +12,7 @@ class Person():
         
 
 class Student(Person):
-    def __init__(self, name, age, gender, previous_organization="The School of Life", skipped_days=0):
+    def __init__(self, name="Jane Doe", age=30, gender="female", previous_organization="The School of Life", skipped_days=0):
         super().__init__(name, age, gender)
         self.previous_organization = previous_organization
         self.skipped_days = skipped_days
@@ -39,17 +39,20 @@ class Mentor(Person):
         print("Hi, I\'m {}, a {} year old {} {} mentor.".format(self.name, self.age, self.gender, self.level))
 
 class Sponsor(Person):
-    def __init__(self, company, hired_students):
-        pass
+    def __init__(self, name, age, gender, company="Google", hired_students=0):
+        super().__init__(name, age, gender)
+        self.company = company
+        self.hired_students = hired_students
     
-    def introduce():
-        pass
+    def introduce(self):
+        print("Hi, I\'m {}, a {} year old {}, who represents {}, and hired {} students so far.".format(self.name, self.age, self.gender, self.company, self.hired_students))
     
-    def hire():
-        pass
+    def hire(self):
+        self.hired_students += 1
+        
     
-    def get_goal():
-        pass
+    def get_goal(self):
+        print("Hire brilliant junior software developers.")
 
 class Pallida():
     def __init__(self, class_name, students, mentors):
@@ -65,6 +68,6 @@ class Pallida():
         pass
     
 
-csabi = Mentor("csabszi", 22, "male")
+csabi = Student("bela")
 csabi.introduce()
 csabi.get_goal()
