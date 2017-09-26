@@ -1,12 +1,15 @@
 class Person():
-    def __init__(self, name, age, gender):
-        pass
+    def __init__(self, name="Jane Doe", age=30, gender="female"):
+        self.name = name
+        self.age = age
+        self.gender = gender
     
     def introduce(self):
-        pass
+        print("Hi, I\'m {}, a {} year old {}.".format(self.name, self.age, self.gender))
     
-    def get_goal():
-        pass
+    def get_goal(self):
+        print("My goal is: Live for the moment!")
+        
 
 class Student(Person):
     def __init__(self, previous_organization, skipped_days):
@@ -57,3 +60,7 @@ class Pallida():
     def info():
         pass
     
+
+csabi = Person("csabszi", 22, "male")
+csabi.introduce()
+csabi.get_goal()
