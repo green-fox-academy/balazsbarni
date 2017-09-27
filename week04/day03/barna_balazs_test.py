@@ -76,8 +76,8 @@ class My_Class_Test(unittest.TestCase):
 
     
     def test_fibonacci_greater_then_two(self):
-        num = 2
-        self.assertEqual(test_nth.fibonacci(num), 1)
+        num = 4
+        self.assertEqual(test_nth.fibonacci(num), 3)
 
     def test_fibonacci_to_zero(self):
         num = 0
@@ -87,6 +87,8 @@ class My_Class_Test(unittest.TestCase):
         num = 1
         self.assertEqual(test_nth.fibonacci(num), 1)
 
+    
+    
 
 
 if __name__ == '__main__':

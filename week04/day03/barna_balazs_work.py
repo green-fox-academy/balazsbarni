@@ -16,6 +16,7 @@ class My_Class(object):
         letters_second = sorted(list(second_sring))
         return letters_first == letters_second
 
+
     def letter_counter(self, word):
         letters = {}
         for letter in word:
@@ -25,10 +26,11 @@ class My_Class(object):
                 letters[letter] = 1
         return letters
 
+
     def fibonacci (self, nth):
-    if nth == 0  or nth == 1:
-        return nth
-    else:
-        return   fibonacci(nth-1) + fibonacci(nth-2)
+        if nth == 0  or nth == 1:
+            return nth
+        else:
+            return self.fibonacci(nth-1) + self.fibonacci(nth-2)
         
 
