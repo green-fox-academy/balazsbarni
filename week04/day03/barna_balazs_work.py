@@ -15,5 +15,14 @@ class My_Class(object):
         letters_first = sorted(list(first_sting))
         letters_second = sorted(list(second_sring))
         return letters_first == letters_second
+
+    def letter_counter(self, word):
+        letters = {}
+        for letter in word:
+            if letter in letters:
+                letters[letter] += 1
+            else:
+                letters[letter] = 1
+        return letters
         
 
