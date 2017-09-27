@@ -24,5 +24,11 @@ class My_Class(object):
             else:
                 letters[letter] = 1
         return letters
+
+    def fibonacci (self, nth):
+    if nth == 0  or nth == 1:
+        return nth
+    else:
+        return   fibonacci(nth-1) + fibonacci(nth-2)
         
 
