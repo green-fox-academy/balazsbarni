@@ -3,6 +3,7 @@ from barna_balazs_work import My_Class
 test_sum = My_Class()
 test_anagram = My_Class()
 test_letter = My_Class()
+test_nth = My_Class()
 
 class My_Class_Test(unittest.TestCase):
     def test_get_apple(self):
@@ -72,6 +73,19 @@ class My_Class_Test(unittest.TestCase):
     def test_letter_counter_same_letters(self):
         word = "aa"
         self.assertEqual(test_letter.letter_counter(word), {"a" :2})
+
+    
+    def test_fibonacci_greater_then_two(self):
+        num = 2
+        self.assertEqual(test_nth.fibonacci(num), 1)
+
+    def test_fibonacci_to_zero(self):
+        num = 0
+        self.assertEqual(test_nth.fibonacci(num), 0)
+
+    def test_fibonacci_to_one(self):
+        num = 1
+        self.assertEqual(test_nth.fibonacci(num), 1)
 
 
 
