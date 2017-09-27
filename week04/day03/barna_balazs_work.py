@@ -10,5 +10,10 @@ class My_Class(object):
             sum_of_list += items
         return sum_of_list
 
-
+    
+    def is_anagram(self, first_sting, second_sring):
+        letters_first = sorted(list(first_sting))
+        letters_second = sorted(list(second_sring))
+        return letters_first == letters_second
+        
 
