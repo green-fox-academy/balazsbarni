@@ -2,7 +2,7 @@ import unittest
 from barna_balazs_work import My_Class
 test_sum = My_Class()
 test_anagram = My_Class()
-
+test_letter = My_Class()
 
 class My_Class_Test(unittest.TestCase):
     def test_get_apple(self):
@@ -52,9 +52,28 @@ class My_Class_Test(unittest.TestCase):
         self.assertTrue(test_anagram.is_anagram(ana_one, ana_two))
 
     def test_is_anagram_multiple_words(self):
-        ana_one = "123 xyz"
-        ana_two = "xyz 123"
+        ana_one = "abc xyz"
+        ana_two = "xyz abc"
         self.assertTrue(test_anagram.is_anagram(ana_one, ana_two))
+
+    
+    def test_letter_counter_one_letter(self):
+        word = "a"
+        self.assertEqual(test_letter.letter_counter(word), {"a" :1})
+
+    def test_letter_counter_empty(self):
+        word = ""
+        self.assertEqual(test_letter.letter_counter(word), {})
+
+    def test_letter_counter_different_letters(self):
+        word = "ab"
+        self.assertEqual(test_letter.letter_counter(word), {"a" : 1, "b" : 1})
+
+    def test_letter_counter_same_letters(self):
+        word = "aa"
+        self.assertEqual(test_letter.letter_counter(word), {"a" :2})
+
+
 
 if __name__ == '__main__':
     unittest.main()
