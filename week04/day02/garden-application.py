@@ -1,8 +1,11 @@
 class Garden(object):
     def __init__(self):
-        self.flowers = Flowers()
-        self.trees = Trees()
+        self.plants = []
 
+    def add_plant()
+
+
+    def watering()
 
 
     
@@ -43,8 +46,7 @@ class Trees(object):
 
 
 
-garden = []
-
+my_garden = Garden()
 yellow = Flowers("yellow" , 0)
 garden.append(yellow)
 blue = Flowers("blue", 0)

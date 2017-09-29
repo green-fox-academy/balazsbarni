@@ -5,37 +5,6 @@ class TestExtend(unittest.TestCase):
     def setUp(self):
         pass
 
-    def test_add_2_and_3_is_5(self):
-        self.assertEqual(extend.add(2, 3), 5)
-
-    def test_add_4_and_1_is_5(self):
-        self.assertEqual(extend.add(4, 1), 5)
-
-    def test_add_when_not_five(self):
-        self.assertEqual(extend.add(2, 2), 4)
-
-
-    def test_max_of_three_first(self):
-        self.assertEqual(extend.max_of_three(5, 4, 3), 5)
-
-    def test_max_of_three_third(self):
-        self.assertEqual(extend.max_of_three(3, 4, 5), 5)
-
-    def test_max_of_three_second(self):
-        self.assertEqual(extend.max_of_three(3, 5, 4), 5)
-
-
-    def test_median_four(self):
-        self.assertEqual(extend.median([7,5,3,5]), 5)
-
-    def test_median_five(self):
-        self.assertEqual(extend.median([1,2,3,4,5]), 3)
-
-    def test_median_three(self):
-        self.assertEqual(extend.median([1, 5, 2]), 2)
-
-    def test_median_six(self):
-        self.assertEqual(extend.median([1, 8, 2, 3, 4, 5]), 3.5 )
     
 
     def test_is_vovel_a(self):
@@ -63,8 +32,15 @@ class TestExtend(unittest.TestCase):
     def test_translate_ae(self):
         self.assertEqual(extend.translate("ae"), "avaeve")
     
-    #def test_translate_aa(self):
-     #   self.assertEqual(extend.translate("aa"), "avaava")
+    def test_translate_aa(self):
+       self.assertEqual(extend.translate("aa"), "avaava")
+
+    def test_translate_aaee(self):
+       self.assertEqual(extend.translate("aaee"), "avaavaeveeve")
+
+    def test_translate_aaaa(self):
+       self.assertEqual(extend.translate("aaaa"), "avaavaavaava")
+
 
 if __name__ == '__main__':
     unittest.main()
