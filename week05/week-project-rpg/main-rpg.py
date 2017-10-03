@@ -58,8 +58,7 @@ class Move_hero:
         self.hero = canvas.create_image(x, y, image = hero_image)
 
     def update_image(self, new_image):
-        self.img = PhotoImage(file = new_image)
-        self.canvas.itemconfigure(self.hero, image = self.img)
+        canvas.itemconfig(self.hero, image = new_image)
     
 
     def move(self, dx, dy):
