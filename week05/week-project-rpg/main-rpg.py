@@ -1,4 +1,5 @@
 from tkinter import *
+import random
 
 class Map(object):
     root = Tk()
@@ -40,24 +41,26 @@ class Map(object):
             if self.map_plan[y][x] == 0:
                 return True
 
+
 class Entity(object):
     size = 72
-    def __init__(self, coord_x, coord_y, entity_image):
+
+    def __init__(self, coord_x, coord_y, entity_image, canvas):
         self.entity = None
         self.coord_x = coord_x
         self.coord_y = coord_y
         self.entity_image = entity_image
-
+        self.canvas = canvas
 
     def create_entity(self):
         x = self.coord_x * self.size + self.size/2
         y = self.coord_y * self.size + self.size/2
-        self.entity = Map.canvas.create_image(x, y, image = self.entity_image)
+        self.entity = self.canvas.create_image(x, y, image = self.entity_image)
     
     def move(self, x, y):
         self.coord_x += x 
         self.coord_y += y
-        Map.canvas.move(self.entity, self.size * x , self.size * y)
+        self.canvas.move(self.entity, self.size * x , self.size * y)
 
     
 
@@ -68,64 +71,64 @@ class Hero(Entity):
     hero_left = PhotoImage(file = "hero-left.gif")
     hero_right = PhotoImage(file = "hero-right.gif")
     
-    def __init__(self):
+    def __init__(self, canvas):
+        super().__init__(0, 0, self.hero_down, canvas)
         self.hero = None
-        super().__init__(0, 0, self.hero_down)
 
-    def update_image(self, new_image):
-        Map.canvas.itemconfig(self.hero, image = new_image)
+    def update_image(self, new_image, canvas):
+        canvas.itemconfig(self.entity, image = new_image)
+
 
 class Skeleton(Entity):
     size = 72
     skeleton_image = PhotoImage(file = "skeleton.gif")
 
-    def __init__(self):
+    def __init__(self, x, y, canvas):
+        super().__init__(x, y, self.skeleton_image, canvas)
         self.skeleton = None
-        self.skeleton_x = 1
-        self.skeleton_y = 1
-        super().__init__(self.skeleton_x, self.skeleton_y, self.skeleton_image)
 
 class Boss(Entity):
     size = 72
     boss_image = PhotoImage(file = "boss.gif")
 
-    def __init__(self):
+    def __init__(self, x, y, canvas):
+        super().__init__(x, y, self.boss_image, canvas)
         self.boss = None
-        self.boss_x = 1
-        self.boss_y = 0
-        super().__init__(self.boss_x, self.boss_y, self.boss_image)
+
+class Game(object):
+    map = Map()
+    map.draw_full_map()
+    size = 72
+    hero = Hero(map.canvas)
+    skeli1 = Skeleton(1, 1, map.canvas)
+    skeli2 = Skeleton(1, 2, map.canvas)
+    skeli3 = Skeleton(1, 3, map.canvas)
+    boss = Boss(2, 1, map.canvas)
+    hero.create_entity()
+    skeli1.create_entity()
+    skeli2.create_entity()
+    skeli3.create_entity()
+    boss.create_entity()
+
+    def __init__(self):
+        self.map.root.bind("<KeyPress>", self.on_key_press)
+        self.map.canvas.pack()
+        self.map.canvas.focus_set()
+        self.map.root.mainloop()
+
+    def on_key_press(self, e):
+        if e.keysym == 'Up' and self.map.get_cell(self.hero.coord_x, self.hero.coord_y-1) == True:
+            self.hero.move(0, -1)
+            self.hero.update_image(self.hero.hero_up, self.map.canvas)
+        elif e.keysym == 'Down' and self.map.get_cell(self.hero.coord_x, self.hero.coord_y+1) == True:
+            self.hero.move(0, 1)
+            self.hero.update_image(self.hero.hero_down, self.map.canvas)
+        elif e.keysym == 'Left' and self.map.get_cell(self.hero.coord_x-1, self.hero.coord_y) == True:
+            self.hero.move(-1, 0)
+            self.hero.update_image(self.hero.hero_left, self.map.canvas)
+        elif e.keysym == 'Right' and self.map.get_cell(self.hero.coord_x+1, self.hero.coord_y) == True:
+            self.hero.move(1, 0)
+            self.hero.update_image(self.hero.hero_right, self.map.canvas)
 
 
-
-
-hero = Hero()
-skeli = Skeleton()
-boss = Boss()
-map = Map()
-map.draw_full_map()
-hero.create_entity()
-skeli.create_entity()
-boss.create_entity()
-
-
-def on_key_press(e):
-    if e.keysym == 'Up' and map.get_cell(hero.coord_x, hero.coord_y-1) == True:
-        hero.move(0, -1)
-        hero.update_image(hero.hero_up)
-    elif e.keysym == 'Down' and map.get_cell(hero.coord_x, hero.coord_y+1) == True:
-        hero.move(0, 1)
-        hero.update_image(hero.hero_down)
-    elif e.keysym == 'Left' and map.get_cell(hero.coord_x-1, hero.coord_y) == True:
-        hero.move(-1, 0)
-        hero.update_image(hero.hero_left)
-    elif e.keysym == 'Right' and map.get_cell(hero.coord_x+1, hero.coord_y) == True:
-        hero.move(1, 0)
-        hero.update_image(hero.hero_right)
-
-
-
-Map.root.bind("<KeyPress>", on_key_press)
-Map.canvas.pack()
-
-Map.canvas.focus_set()
-Map.root.mainloop()
+game = Game()
