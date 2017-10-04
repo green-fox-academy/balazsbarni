@@ -3,6 +3,7 @@ from tkinter import *
 root = Tk()
 width = 750
 height = 750
+size = 72
 canvas = Canvas(root, width=str(width), height=str(height))
 
 floor_image = PhotoImage(file = "floor.gif")
@@ -26,13 +27,13 @@ map_plan = [[0,0,0,1,0,1,0,0,0,0],
             [0,0,0,0,0,1,0,0,0,0],
             [1,1,1,1,0,1,1,1,1,0],
             [0,1,0,1,0,0,0,0,1,0],
-            [0,1,0,1,0,1,1,0,1,0],
+            [0,1,0,1,0,1,1,0,0,0],
             [0,0,0,0,0,1,1,0,1,0],
             [0,1,1,1,0,0,0,0,1,0],
-            [0,0,0,1,0,1,1,0,1,0]
+            [0,0,0,1,0,1,1,0,0,0]
             ]
 
-def draw_full_map(x,y, size):
+def draw_full_map():
     for line in range(len(map_plan)):
         for row in range(len(map_plan)):
             if map_plan[line][row] == 0:
@@ -42,46 +43,48 @@ def draw_full_map(x,y, size):
 
 
 def get_cell(x, y):
-    for line in range(len(map_plan)):
-        for row in range(len(map_plan)):
-            if map_plan[x][y] == 0:
-                return True
-            else:
-                return False
-
-
-class Move_hero:
+    if 0 <= x <= 9 and 0 <= y <= 9:
+        if map_plan[y][x] == 0:
+            return True
+        
+class Hero:
     def __init__(self):
         self.hero = None
+        self.coord_x = 0
+        self.coord_y = 0
 
-    def create_hero(self, x, y, hero_image):
-        self.hero = canvas.create_image(x, y, image = hero_image)
+    def create_hero(self):
+        x = size/2
+        y = size/2
+        self.hero = canvas.create_image(x, y, image = hero_down)
 
     def update_image(self, new_image):
         canvas.itemconfig(self.hero, image = new_image)
     
+    def move(self, x, y):
+        self.coord_x += x 
+        self.coord_y += y
+        canvas.move(self.hero, size * x , size * y)
 
-    def move(self, dx, dy):
-        canvas.move(self.hero, dx, dy )
 
-movehero = Move_hero()
+hero = Hero()
+draw_full_map()
+hero.create_hero()
 
-draw_full_map(72, 72, 72)
-movehero.create_hero(36, 36, hero_down)
 
 def on_key_press(e):
-    if e.keysym == 'Up':
-        movehero.move(0, -72)
-        movehero.update_image(hero_up)
-    elif e.keysym == 'Down':
-        movehero.move(0, 72)
-        movehero.update_image(hero_down)
-    elif e.keysym == 'Left':
-        movehero.move(-72, 0)
-        movehero.update_image(hero_left)
-    elif e.keysym == 'Right':
-        movehero.move(72, 0)
-        movehero.update_image(hero_right)
+    if e.keysym == 'Up' and get_cell(hero.coord_x, hero.coord_y-1) == True:
+        hero.move(0, -1)
+        hero.update_image(hero_up)
+    elif e.keysym == 'Down' and get_cell(hero.coord_x, hero.coord_y+1) == True:
+        hero.move(0, 1)
+        hero.update_image(hero_down)
+    elif e.keysym == 'Left' and get_cell(hero.coord_x-1, hero.coord_y) == True:
+        hero.move(-1, 0)
+        hero.update_image(hero_left)
+    elif e.keysym == 'Right' and get_cell(hero.coord_x+1, hero.coord_y) == True:
+        hero.move(1, 0)
+        hero.update_image(hero_right)
 
 
 
