@@ -6,7 +6,7 @@ class Map(object):
 
     def __init__(self):
         self.size = 72
-        self.canvas = Canvas(self.root, width = 750, height = 750)
+        self.canvas = Canvas(self.root, width = 900, height = 750)
         self.floor_image = PhotoImage(file = "floor.gif")
         self.wall_image = PhotoImage(file = "wall.gif")
         self.map_plan = [[0,0,0,1,0,1,0,0,0,0],
@@ -44,13 +44,16 @@ class Map(object):
 
 class Entity(object):
 
-    def __init__(self, coord_x, coord_y, entity_image, canvas):
+    def __init__(self, coord_x, coord_y, entity_image, canvas, health, attack, defense):
         self.entity = None
         self.size = 72
         self.coord_x = coord_x
         self.coord_y = coord_y
         self.entity_image = entity_image
         self.canvas = canvas
+        self.health = health
+        self.attack = attack
+        self.defense = defense
 
     def create_entity(self):
         x = self.coord_x * self.size + self.size/2
@@ -71,7 +74,9 @@ class Hero(Entity):
         self.hero_up = PhotoImage(file = "hero-up.gif")
         self.hero_left = PhotoImage(file = "hero-left.gif")
         self.hero_right = PhotoImage(file = "hero-right.gif")
-        super().__init__(0, 0, self.hero_down, canvas)
+        self.d6 = random.randint(1, 6)
+        self.hero_level = 1
+        super().__init__(0, 0, self.hero_down, canvas, 20 + 3 * self.d6, 5 + self.d6, 2 * self.d6)
         self.size = 72
         self.hero = None
 
@@ -83,7 +88,8 @@ class Skeleton(Entity):
 
     def __init__(self, x, y, canvas):
         self.skeleton_image = PhotoImage(file = "skeleton.gif")
-        super().__init__(x, y, self.skeleton_image, canvas)
+        self.d6 = random.randint(1, 6)
+        super().__init__(x, y, self.skeleton_image, canvas, 2 * self.d6 + self.d6, self.d6, 1 / 2 * self.d6 + self.d6 / 2)
         self.size = 72
         self.skeleton = None
 
@@ -91,7 +97,9 @@ class Boss(Entity):
 
     def __init__(self, x, y, canvas):
         self.boss_image = PhotoImage(file = "boss.gif")
-        super().__init__(x, y, self.boss_image, canvas)
+        self.d6 = random.randint(1, 6)
+        self.boss_level = 1
+        super().__init__(x, y, self.boss_image, canvas, 2 * self.boss_level * self.d6 + self.d6, self.boss_level * self.d6 + self.d6, self.boss_level / 2 * self.d6 + self.d6 / 2)
         self.size = 72
         self.boss = None
         
@@ -107,6 +115,7 @@ class Game(object):
         self.spawn_skeleton(skeleton_number)
         self.spawn_boss()
         self.size = 72
+        self.map.canvas.create_text(800, 200, font="Times 20 italic bold", text = self.status())
         self.map.root.bind("<KeyPress>", self.on_key_press)
         self.map.canvas.pack()
         self.map.canvas.focus_set()
@@ -130,6 +139,10 @@ class Game(object):
             boss = Boss(ran_x, ran_y, self.map.canvas)
             boss.create_entity()
             self.npcs.append(boss)
+
+    def status (self):
+        return "Hero (Level: " + str(self.hero.hero_level) + ") \nHP: " + str(self.hero.health) + " \nAttack Point: " + str(self.hero.attack) + "  \nDefense Point: " + str(self.hero.defense)
+        
 
 
 
