@@ -124,8 +124,8 @@ class Game(object):
     def spawn_skeleton (self, skeleton_number):
         initial_num = 1
         while initial_num <= skeleton_number:
-            ran_x = random.randint(3, 9)
-            ran_y = random.randint(3, 9)
+            ran_x = random.randint(1, 9)
+            ran_y = random.randint(1, 9)
             if self.map.get_cell(ran_x, ran_y) == True:
                 skeli = Skeleton(ran_x, ran_y, self.map.canvas)
                 skeli.create_entity()
@@ -133,18 +133,20 @@ class Game(object):
                 initial_num += 1
 
     def spawn_boss (self):
-        ran_x = random.randint(3, 9)
-        ran_y = random.randint(3, 9)
-        if self.map.get_cell(ran_x, ran_y) == True:
-            boss = Boss(ran_x, ran_y, self.map.canvas)
-            boss.create_entity()
-            self.npcs.append(boss)
+        initial_num = 0
+        while initial_num < 1:
+            ran_x = random.randint(5, 9)
+            ran_y = random.randint(5, 9)
+            if self.map.get_cell(ran_x, ran_y) == True:
+                boss = Boss(ran_x, ran_y, self.map.canvas)
+                boss.create_entity()
+                self.npcs.append(boss)
+                initial_num += 1
+
 
     def status (self):
         return "Hero (Level: " + str(self.hero.hero_level) + ") \nHP: " + str(self.hero.health) + " \nAttack Point: " + str(self.hero.attack) + "  \nDefense Point: " + str(self.hero.defense)
         
-
-
 
     def on_key_press(self, e):
         if e.keysym == 'Up' and self.map.get_cell(self.hero.coord_x, self.hero.coord_y-1) == True:
@@ -159,6 +161,12 @@ class Game(object):
         elif e.keysym == 'Right' and self.map.get_cell(self.hero.coord_x+1, self.hero.coord_y) == True:
             self.hero.move(1, 0)
             self.hero.update_image(self.hero.hero_right, self.map.canvas)
+        self.battle()
+
+    def battle(self):
+        for i in range(len(self.npcs)):
+            if self.npcs[i].coord_x == self.hero.coord_x and self.npcs[i].coord_y == self.hero.coord_y:
+                self.map.canvas.create_text(800, 400, text = "Kill him!")
 
 
 game = Game(3)
