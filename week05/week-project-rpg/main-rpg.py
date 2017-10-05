@@ -3,24 +3,24 @@ import random
 
 class Map(object):
     root = Tk()
-    size = 72
-    canvas = Canvas(root, width = 750, height = 750)
-    floor_image = PhotoImage(file = "floor.gif")
-    wall_image = PhotoImage(file = "wall.gif")
-    map_plan = [[0,0,0,1,0,1,0,0,0,0],
-                [0,0,0,1,0,1,0,1,1,0],
-                [0,1,1,1,0,1,0,1,1,0],
-                [0,0,0,0,0,1,0,0,0,0],
-                [1,1,1,1,0,1,1,1,1,0],
-                [0,1,0,1,0,0,0,0,1,0],
-                [0,1,0,1,0,1,1,0,0,0],
-                [0,0,0,0,0,1,1,0,1,0],
-                [0,1,1,1,0,0,0,0,1,0],
-                [0,0,0,1,0,1,1,0,0,0]
-                ]
 
     def __init__(self):
-        pass
+        self.size = 72
+        self.canvas = Canvas(self.root, width = 750, height = 750)
+        self.floor_image = PhotoImage(file = "floor.gif")
+        self.wall_image = PhotoImage(file = "wall.gif")
+        self.map_plan = [[0,0,0,1,0,1,0,0,0,0],
+                        [0,0,0,1,0,1,0,1,1,0],
+                        [0,1,1,1,0,1,0,1,1,0],
+                        [0,0,0,0,0,1,0,0,0,0],
+                        [1,1,1,1,0,1,1,1,1,0],
+                        [0,1,0,1,0,0,0,0,1,0],
+                        [0,1,0,1,0,1,1,0,0,0],
+                        [0,0,0,0,0,1,1,0,1,0],
+                        [0,1,1,1,0,0,0,0,1,0],
+                        [0,0,0,1,0,1,1,0,0,0]
+                        ]
+
 
     def draw_floor_piece(self, x, y, size):
         self.canvas.create_image(x * self.size, y * self.size, image = self.floor_image, anchor = "nw")
@@ -43,10 +43,10 @@ class Map(object):
 
 
 class Entity(object):
-    size = 72
 
     def __init__(self, coord_x, coord_y, entity_image, canvas):
         self.entity = None
+        self.size = 72
         self.coord_x = coord_x
         self.coord_y = coord_y
         self.entity_image = entity_image
@@ -65,14 +65,14 @@ class Entity(object):
     
 
 class Hero(Entity):
-    size = 72
-    hero_down = PhotoImage(file = "hero-down.gif")
-    hero_up = PhotoImage(file = "hero-up.gif")
-    hero_left = PhotoImage(file = "hero-left.gif")
-    hero_right = PhotoImage(file = "hero-right.gif")
     
     def __init__(self, canvas):
+        self.hero_down = PhotoImage(file = "hero-down.gif")
+        self.hero_up = PhotoImage(file = "hero-up.gif")
+        self.hero_left = PhotoImage(file = "hero-left.gif")
+        self.hero_right = PhotoImage(file = "hero-right.gif")
         super().__init__(0, 0, self.hero_down, canvas)
+        self.size = 72
         self.hero = None
 
     def update_image(self, new_image, canvas):
@@ -80,41 +80,58 @@ class Hero(Entity):
 
 
 class Skeleton(Entity):
-    size = 72
-    skeleton_image = PhotoImage(file = "skeleton.gif")
 
     def __init__(self, x, y, canvas):
+        self.skeleton_image = PhotoImage(file = "skeleton.gif")
         super().__init__(x, y, self.skeleton_image, canvas)
+        self.size = 72
         self.skeleton = None
 
 class Boss(Entity):
-    size = 72
-    boss_image = PhotoImage(file = "boss.gif")
 
     def __init__(self, x, y, canvas):
+        self.boss_image = PhotoImage(file = "boss.gif")
         super().__init__(x, y, self.boss_image, canvas)
+        self.size = 72
         self.boss = None
+        
 
 class Game(object):
-    map = Map()
-    map.draw_full_map()
-    size = 72
-    hero = Hero(map.canvas)
-    skeli1 = Skeleton(1, 1, map.canvas)
-    skeli2 = Skeleton(1, 2, map.canvas)
-    skeli3 = Skeleton(1, 3, map.canvas)
-    boss = Boss(2, 1, map.canvas)
-    hero.create_entity()
-    skeli1.create_entity()
-    skeli2.create_entity()
-    skeli3.create_entity()
-    boss.create_entity()
-
-    def __init__(self):
+  
+    def __init__(self, skeleton_number):
+        self.map = Map()
+        self.map.draw_full_map()
+        self.hero = Hero(self.map.canvas)
+        self.hero.create_entity()
+        self.npcs = []
+        self.spawn_skeleton(skeleton_number)
+        self.spawn_boss()
+        self.size = 72
         self.map.root.bind("<KeyPress>", self.on_key_press)
         self.map.canvas.pack()
         self.map.canvas.focus_set()
         self.map.root.mainloop()
+
+    def spawn_skeleton (self, skeleton_number):
+        initial_num = 1
+        while initial_num <= skeleton_number:
+            ran_x = random.randint(3, 9)
+            ran_y = random.randint(3, 9)
+            if self.map.get_cell(ran_x, ran_y) == True:
+                skeli = Skeleton(ran_x, ran_y, self.map.canvas)
+                skeli.create_entity()
+                self.npcs.append(skeli)
+                initial_num += 1
+
+    def spawn_boss (self):
+        ran_x = random.randint(3, 9)
+        ran_y = random.randint(3, 9)
+        if self.map.get_cell(ran_x, ran_y) == True:
+            boss = Boss(ran_x, ran_y, self.map.canvas)
+            boss.create_entity()
+            self.npcs.append(boss)
+
+
 
     def on_key_press(self, e):
         if e.keysym == 'Up' and self.map.get_cell(self.hero.coord_x, self.hero.coord_y-1) == True:
@@ -131,4 +148,4 @@ class Game(object):
             self.hero.update_image(self.hero.hero_right, self.map.canvas)
 
 
-game = Game()
+game = Game(3)
