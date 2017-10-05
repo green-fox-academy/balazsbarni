@@ -115,8 +115,8 @@ class Game(object):
         self.spawn_skeleton(skeleton_number)
         self.spawn_boss()
         self.size = 72
-        self.map.canvas.create_text(800, 200, font="Times 20 italic bold", text = self.status())
         self.map.root.bind("<KeyPress>", self.on_key_press)
+        self.hud = self.map.canvas.create_text(800, 200, font="Times 20 italic bold", text = self.status(self.hero.health))
         self.map.canvas.pack()
         self.map.canvas.focus_set()
         self.map.root.mainloop()
@@ -144,8 +144,6 @@ class Game(object):
                 initial_num += 1
 
 
-    def status (self):
-        return "Hero (Level: " + str(self.hero.hero_level) + ") \nHP: " + str(self.hero.health) + " \nAttack Point: " + str(self.hero.attack) + "  \nDefense Point: " + str(self.hero.defense)
         
 
     def on_key_press(self, e):
@@ -166,7 +164,29 @@ class Game(object):
     def battle(self):
         for i in range(len(self.npcs)):
             if self.npcs[i].coord_x == self.hero.coord_x and self.npcs[i].coord_y == self.hero.coord_y:
-                self.map.canvas.create_text(800, 400, text = "Kill him!")
+                while self.hero.health >= 0 or self.npcs[i].health >= 0:
+                    current_hp = self.hero.health
+                    current_npc = self.npcs[i].health
+                    hr = random.randint(1,6)
+                    if self.hero.attack  > self.npcs[i].defense:
+                        print("belo")
+                        current_npc -= self.hero.attack + (2 * hr)
+                        if current_npc <= 0:
+                            self.npcs[i].move(10, 10)
+                            break
+                    nr = random.randint(1,6)
+                    if self.npcs[i].attack + (2 * nr) + 4 > self.hero.defense:
+                        print("helo")
+                        current_hp -= self.npcs[i].attack + (2 * hr)
+                        self.map.canvas.itemconfig(self.hud, text = self.status(current_hp))
+                        if current_hp <= 0:
+                            self.map.canvas.create_text(800, 400, text = "GAME OVER")
+                    self.hero.health = current_hp        
+                    self.npcs[i].health = current_npc
+                    
 
+    def status (self, health):
+        return "Hero (Level: " + str(self.hero.hero_level) + ") \nHP: " + str(health) + " \nAttack Point: " + str(self.hero.attack) + "  \nDefense Point: " + str(self.hero.defense)
+        
 
 game = Game(3)
