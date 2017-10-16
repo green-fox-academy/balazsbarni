@@ -1,0 +1,56 @@
+.header {
+    display: flex;
+    height: 65px;
+    background-color: purple;
+    justify-content: flex-start;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.nav {
+    background-color: cyan;
+    width: 110px;
+    height: 40px;
+    margin: 10px;
+}
+
+.first {
+    flex-basis: 140px;
+}
+
+.second {
+    flex-basis: 100px;
+}
+
+.third {
+    flex-basis: 120px
+}
+
+.main {
+    display: flex;
+    height: 1000px;
+    justify-content: flex-start;
+    margin: 0px 60px;
+}
+
+.content {
+    background-color: gold;
+    flex: 2;
+    margin: 10px 5px 10px 0px;
+}
+
+.sidebar {
+    background-color: green;
+    flex: 1;
+    margin: 10px 0px 10px 5px;
+}
+
+.footer {
+    display: flex;
+    margin: 0px 60px 60px 60px;
+    height: 65px;
+    background-color: grey;
+}
