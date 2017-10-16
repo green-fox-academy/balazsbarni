@@ -1,0 +1,27 @@
+header {
+    margin: 30px 60px 0px 60px;
+    height: 95px;
+    background-color: purple;
+}
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul {
+    display: flex;
+    justify-content: flex-start;
+}
+
+nav li {
+    list-style-type: none;
+    background-color: cyan;
+    width: 100px;
+    height: 35px;
+    margin: 10px;
+}
+
+
+
+
