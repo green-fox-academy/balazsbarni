@@ -5,12 +5,12 @@
     margin: 50px;
     align-items: center;
     padding: 0px;
+    justify-content: space-between;    
 }
 
 .item {
     height: 100px;
     width: 100px;
     background-color: purple;
-    margin-right: 10px;
     list-style-type: none;
 }
