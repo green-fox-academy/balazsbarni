@@ -6,18 +6,21 @@
   }
 
 .item {
-    height: 175px;
-    width: 175px;
+    height: 190px;
+    width: 100%;
 }
 
 .green {
     background-color: green;
+    flex: 1;
 }
 
 .yellow {
     background-color: yellow;
+    flex: 2;
 }
 
 .purple {
     background-color: purple;
+    flex: 1;
 }
