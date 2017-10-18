@@ -1,0 +1,49 @@
+body {
+    background: rgb(106, 19, 106);
+}
+
+.container {
+    width: 100%;
+    height: 500px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row; 
+    text-align: center;
+}
+
+.button {
+    width: 20%;
+    height:50px;
+    font-size: 20px;
+    font-weight: 100;
+    color: wheat;
+    border: 0px solid black;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+}
+
+.blue {
+    background: blue;
+    box-shadow: 0px 5px 3px darkblue;
+}
+
+.green {
+    background: green;
+    box-shadow: 0px 5px 5px darkgreen;
+}
+.red {
+    background: tomato;
+    box-shadow: 0px 5px 5px darkred;
+}
+
+.button:hover {
+    opacity: 0.8;
+}
+
+.button:active {
+    filter: brightness(0.6);
+}
