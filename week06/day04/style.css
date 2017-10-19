@@ -1,0 +1,35 @@
+.container {
+    width: 100%;
+    height: 200px;
+    display: grid;
+    border: 5px solid #B252F7;
+    grid-gap: 5px;
+    background: #B252F7;
+    grid-template-columns: 1fr 3fr 1fr;
+        
+}
+
+.section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    color: white;
+}
+
+.left {
+    background: #F9D64D;
+    grid-column: 1 / 2;
+
+}
+
+.mid {
+    background: #69D437;
+    grid-column: 2 / 3;
+}
+
+.right {
+    background: #F9D64D;
+    grid-column: 3 / 4;
+}
+
