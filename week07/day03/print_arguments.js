@@ -4,7 +4,11 @@
 //   (can have multiple number of arguments)
 
 function printer() {
-    console.log.apply(this, arguments);
+    let inline = '';
+    for(let i = 0; i < arguments.length; i += 1) {
+        inline += arguments[i] + ' ';
+     }
+    console.log(inline); 
 }
 
 printer('kutya', 'macska', 'elefant');
