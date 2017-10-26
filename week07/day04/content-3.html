@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Workshop: innerHTML, textContent</title>
+</head>
+<body>
+  <p>apple banana <strong>cat</strong> dog</p>
+  <p class="output1">elephant</p>
+  <p class="output2">fox</p>
+  <script>
+    'use strict';
+    let parContent = document.getElementsByTagName('p')[0];
+    let firstOut = document.getElementsByClassName('output1')[0];
+    firstOut.innerText = parContent.innerText;
+    let secondOut = document.getElementsByClassName('output2')[0];
+    secondOut.innerHTML = parContent.innerHTML;
+
+
+    // fill output1 with the first paragraph's content, text only.
+
+    // fill output2 with the first paragraph's content keeping the cat strong.
+  </script>
+</body>
+</html>
