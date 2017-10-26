@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Workshop: innerHTML, textContent</title>
+</head>
+<body>
+  <p class="apple">apple</p>
+  <p class="balloon">banana</p>
+  <p class="cat">car</p>
+  <p class="dog">dolphin</p>
+  <script>
+    'use strict';
+    let lastContent = document.getElementsByClassName('dog')[0].innerText;
+
+    let allContent = document.getElementsByTagName('p');
+    for (let i = 0; i < allContent.length; i += 1){
+        allContent[i].innerText = lastContent;
+    }
+
+    // fill every paragraph with the last one's content.
+  </script>
+
+</body>
+</html>
