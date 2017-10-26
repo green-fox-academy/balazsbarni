@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Workshop: innerHTML, textContent</title>
+</head>
+<body>
+  <ul>
+    <li>placeholder</li>
+    <li>placeholder</li>
+    <li>placeholder</li>
+    <li>placeholder</li>
+  </ul>
+  <script>
+    'use strict';
+    let listList = document.getElementsByTagName('li');
+    let toChange = ['apple', 'banana', 'cat', 'dog'];
+
+    for (let i = 0; i < listList.length; i +=1) {
+        listList[i].innerText = toChange[i];
+    }
+
+    let bigList = document.getElementsByTagName('ul')[0];
+    bigList.style.background = 'limegreen';
+
+    // 1) replace the list items' content with items from this list:
+    // ['apple', 'banana', 'cat', 'dog']
+
+    // 2) change the <ul> element's background color to 'limegreen'
+    //   - don't just add a CSS class
+    //   - use the .style attribute
+  </script>
+</body>
+</html>
