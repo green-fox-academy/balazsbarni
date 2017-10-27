@@ -15,16 +15,27 @@
 let martixSize = 6;
 let matrixDraw = [];
 
+// for (let i = 0; i < martixSize; i += 1) {
+//     let matrixLine = [];
+//     for (let j = 0; j < martixSize; j += 1){
+//         if (j === martixSize - i - 1) {
+//             matrixLine.push(1);
+//         } else {
+//             matrixLine.push(0);   
+//         }
+//     }
+//     matrixDraw.push(matrixLine);
+// }
 for (let i = 0; i < martixSize; i += 1) {
     let matrixLine = [];
     for (let j = 0; j < martixSize; j += 1){
-        if (j === martixSize - i - 1) {
+        if (j === i) {
             matrixLine.push(1);
         } else {
             matrixLine.push(0);   
         }
     }
-    matrixDraw.push(matrixLine);
+    matrixDraw.push(matrixLine.reverse());
 }
 
 console.log(matrixDraw);
