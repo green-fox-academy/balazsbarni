@@ -3,15 +3,16 @@ let Shuffler = {
     transactionCount: 1,
     pick: function() {
         this.cash -= 1000;
+        this.target = {};
         if (this.transactionCount %  2 === 1) {
-            Panama.deposit(1000);
-            this.transactionCount += 1;
-            console.log('Panama got 1000!');
+            this.target = Panama;
+            this.target.deposit(1000);
         } else {
-            Cyprus.deposit(1000);
-            this.transactionCount += 1;
-            console.log('Cyprus got 1000!');
+            this.target = Cyprus;
+            this.target.deposit(1000);
         }
+        this.transactionCount += 1;
+        console.log(this.target.name  + ' got 1000!');
     }
 }
 
