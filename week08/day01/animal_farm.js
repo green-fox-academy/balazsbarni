@@ -88,7 +88,7 @@ class Farm {
         if (this.animals.length === 0) {
             console.log('Bancrupt:(')
         } else if (0 < this.animals.length < this.slots) {
-            console.log('OK')
+            console.log('The farm has ' + this.animals.length + ' living animals, we are not bancrupt!')
         } else if (this.animals.length === this.slots) {
             console.log('Full')
         }
@@ -96,14 +96,8 @@ class Farm {
 }
 
 let cowFarm = new Farm(5);
-cowFarm.progress();
-console.log(cowFarm.animals);
-cowFarm.progress();
-console.log(cowFarm.animals);
-cowFarm.progress();
-console.log(cowFarm.animals);
-cowFarm.progress();
-console.log(cowFarm.animals);
+let myFarm = document.querySelector('button');
+myFarm.addEventListener('click', cowFarm.progress.bind(cowFarm));
 
 
 
