@@ -16,9 +16,9 @@ let blueSharp = new Sharpie('blue', 10);
 
 let useSharpie = function(sharpie) {
     while (sharpie.inkAmount > 0) {
-        sharpie.inkAmount -= sharpie.width;
+        sharpie.use();
+        console.log(blueSharp.inkAmount);
     };
 };
 
 useSharpie(blueSharp);
-console.log(blueSharp.inkAmount);
