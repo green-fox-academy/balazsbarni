@@ -20,8 +20,95 @@ class Animal {
     }
 }
 
+class Farm {
+    constructor(slots) {
+        this.slots = slots;
+        this.animals = [];
+        this.fill();
+    }
+    
+    fill() {
+        while (this.slots > this.animals.length) {
+             this.animals.push(new Animal());
+        }
+    }
+
+    breed() {
+        if (this.slots > this.animals.length  && Math.random() <= 0.4) {
+            this.animals.push(new Animal());
+        }
+    }
+
+    slaughter() {
+        this.toEat = 0;
+        for (let i = 1; i < this.animals.length; i +=1) {
+            if (this.animals[i].hunger < this.animals[this.toEat].hunger) {
+                this.toEat = i;
+            };
+        } 
+        this.animals.splice(this.toEat, 1);
+    }
+
+    report() {
+        if (this.animals.length > 0) {
+            console.log('The farm has ' + this.animals.length + ' living animals, we are not bancrupt!');
+        } else {
+            console.log('The farm has no living animals, we are bankrupt!');
+        }
+    }
 
 
-let cow = new Animal();
-cow.play()
-console.log(cow);
+    progress() {
+        for (let i = 0; i < this.animals.length; i ++) {
+            if (Math.random() <= 0.5) {
+                this.animals[i].eat();
+            }
+        }
+
+        for (let i = 0; i < this.animals.length; i ++) {
+            if (Math.random() <= 0.5) {
+                this.animals[i].drink();
+            }
+        }
+
+        for (let i = 0; i < this.animals.length; i ++) {
+            if (Math.random() <= 0.5) {
+                this.animals[i].play();
+            }
+        }
+    
+        this.slaughter();
+        this.breed();
+        this.dailyReport()
+    } 
+
+
+    
+    dailyReport() {
+        if (this.animals.length === 0) {
+            console.log('Bancrupt:(')
+        } else if (0 < this.animals.length < this.slots) {
+            console.log('OK')
+        } else if (this.animals.length === this.slots) {
+            console.log('Full')
+        }
+    }
+}
+
+let cowFarm = new Farm(5);
+cowFarm.progress();
+console.log(cowFarm.animals);
+cowFarm.progress();
+console.log(cowFarm.animals);
+cowFarm.progress();
+console.log(cowFarm.animals);
+cowFarm.progress();
+console.log(cowFarm.animals);
+
+
+
+
+
+
+
+
