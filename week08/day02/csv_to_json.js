@@ -39,13 +39,20 @@ let convertData = data.split('\n').map(function(i){
 
 //console.log(convertData);
 
-//let toDict = []
+let uniqueArray = [];
 let toDict = convertData.map(function(i){
-    return {
-        name: i[0],
-        id: i[1],
-        color: i[2]
-    }
+    if (!uniqueArray.includes(i[0])){
+        uniqueArray.push(i[0]);
+        return {
+            name: i[0],
+            id: i[1],
+            color: i[2]
+        }
+    }  
 })
 
-console.log(toDict);
+let finalDict = toDict.filter(function(i){
+    return i != undefined;
+})
+
+console.log(finalDict.length);
