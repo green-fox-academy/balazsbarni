@@ -7,9 +7,7 @@
 //  - escape() // logs "BREAKING NEWS, [yourname] escaped the prison" to the console.
 //    - it should empties the fugitive variable
 
-var prison = function(name) {
-    return new jail(name);
-}    
+var prison = new jail(name);
 
 function jail(name) {
     this.privateFugitive = name;
