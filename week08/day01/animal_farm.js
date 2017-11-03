@@ -34,8 +34,11 @@ class Farm {
     }
 
     breed() {
-        if (this.slots > this.animals.length  && Math.random() <= 0.4) {
+        if (this.slots > this.animals.length  && Math.random() <= 0.5) {
             this.animals.push(new Animal());
+            if (this.slots > this.animals.length  && Math.random() <= 0.7) {
+                this.animals.push(new Animal());
+            }
         }
     }
 
@@ -87,6 +90,7 @@ class Farm {
     dailyReport() {
         if (this.animals.length === 0) {
             console.log('Bancrupt:(')
+            myFarm.disabled = true;
         } else if (0 < this.animals.length < this.slots) {
             console.log('The farm has ' + this.animals.length + ' living animals, we are not bancrupt!')
         } else if (this.animals.length === this.slots) {
@@ -95,7 +99,7 @@ class Farm {
     }
 }
 
-let cowFarm = new Farm(5);
+let cowFarm = new Farm(3);
 let myFarm = document.querySelector('button');
 myFarm.addEventListener('click', cowFarm.progress.bind(cowFarm));
 
