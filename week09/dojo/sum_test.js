@@ -27,3 +27,45 @@ test('Return sum of elements', function(t){
     t.equal(actual, expected);
     t.end();
 });
+
+test('Empty list try', function(t){
+    var actual = sum([]);
+    var expected = 0;
+
+    t.equal(actual, expected);
+    t.end();
+});
+
+test('One elemento in listo tryyo', function(t){
+    var actual = sum([5000]);
+    var expected = 5000;
+
+    t.equal(actual, expected);
+    t.end();
+});
+
+test('More elemento in listo wit zerro', function(t){
+    var actual = sum([0,5000]);
+    var expected = 5000;
+
+    t.equal(actual, expected);
+    t.end();
+});
+
+test('With stringo and numbero', function(t){
+    var actual = sum([3,'string', 5000]);
+    var expected = 'nagybajvan!!';
+
+    t.equal(actual, expected);
+    t.end();
+});
+
+test('With stringo', function(t){
+    var actual = sum(['string']);
+    var expected = 'nagybajvan!!';
+
+    t.equal(actual, expected);
+    t.end();
+});
+
+
