@@ -18,6 +18,10 @@ const getTitle = function(callback) {
     ajax('GET', 'API', callback);
   };
 
+const getTable = function(callback) {
+    ajax('GET', 'list', callback);
+  };
+
 let renderBook = (function(item){
     item.forEach(function(item) {
         let tempBook = document.createElement('p');
@@ -26,22 +30,28 @@ let renderBook = (function(item){
     })
 });
 
-let renderTable = function(callback) {
+let renderTable = (function(item){
     let mainTable = document.createElement('table');
     item.forEach(function(item){
         let tableRow = document.createElement('tr');
-        let tableTitle = document.createElement('td');
-        let tableAuthor = document.createElement('td');
-        let tableCategory = document.createElement('td');
-        let tablePublish = document.createElement('td');
-        let tablePrice = document.createElement('td');
-        tableTitle.innerText = item.book_name;
-        tableAuthor.innerText = item.book_name;
-        tableTitle.innerText = item.book_name;
-        tableTitle.innerText = item.book_name;
-        tableTitle.innerText = item.book_name;
-        
-    })
-}
+        let name = document.createElement('td');
+        name.innerText = item.book_name;
+        let author = document.createElement('td');
+        author.innerText = item.aut_name;
+        let cate = document.createElement('td');
+        cate.innerText = item.cate_descrip;
+        let pub = document.createElement('td');
+        pub.innerText = item.pub_name;
+        let price = document.createElement('td');
+        price.innerText = item.book_price;
+        tableRow.appendChild(name);
+        tableRow.appendChild(author);
+        tableRow.appendChild(cate);
+        tableRow.appendChild(pub);
+        tableRow.appendChild(price);
+        mainTable.appendChild(tableRow);
+        document.body.appendChild(tableRow);
+    });
+})
 
-getTitle(renderBook);
+getTable(renderTable);
