@@ -4,23 +4,30 @@ const url = 'http://localhost:3000/'
 function ajax (command, endName, callback) {
     let xhr = new XMLHttpRequest();
     xhr.open(command, url + endName);
-    xhr.onreadystatechange = function() {
-        if(xhr.readyState == 4) {
-            callback(JSON.parse(xhr.responseText));
-            console.log(JSON.parse(xhr.responseText).author);
-        };
+    xhr.onload = function() {
+        callback(JSON.parse(xhr.responseText));
     };
     xhr.send();
 };
 
+console.log(window.location.search)
 
 const getTitle = function(callback) {
-    ajax('GET', 'API', callback);
+    ajax('GET', 'raw_data', callback);
   };
 
-const getTable = function(callback) {
-    ajax('GET', 'books', callback);
+// const getTable = function(callback) {
+//     ajax('GET', 'books', callback);
+//   };
+
+//   const getTable = function(callback) {
+//     ajax('GET', 'books?category=science&pgt=50', callback);
+//   };
+  const getTable = function(callback) {
+    ajax('GET', 'books?publisher=Summer Night Publication&plt=200', callback);
   };
+
+
 
 let renderBook = (function(item){
     item.forEach(function(item) {
@@ -54,4 +61,5 @@ let renderTable = (function(item){
     });
 })
 
+//getTitle(renderBook);
 getTable(renderTable);
