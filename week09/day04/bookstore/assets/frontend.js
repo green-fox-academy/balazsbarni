@@ -19,7 +19,7 @@ const getTitle = function(callback) {
   };
 
 const getTable = function(callback) {
-    ajax('GET', 'list', callback);
+    ajax('GET', 'books', callback);
   };
 
 let renderBook = (function(item){
