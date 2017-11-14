@@ -1,3 +1,91 @@
-* {
-    background-color: limegreen;
+
+
+.container {
+    margin: 0px auto;
+    display: grid;
+    width: 600px;
+    height: 400px;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(11, 1fr);
+    background: #333333;
+    grid-template-areas:
+        "log log log alb alb trc trc trc trc trc"
+        "log log log alb alb trc trc trc trc trc"
+        "hea hea hea alb alb tra tra tra tra tra"
+        "pli pli pli pli pli tra tra tra tra tra"
+        "pli pli pli pli pli tra tra tra tra tra"
+        "pli pli pli pli pli tra tra tra tra tra"
+        "pli pli pli pli pli tra tra tra tra tra"
+        "pli pli pli pli pli tra tra tra tra tra"
+        "pli pli pli pli pli tra tra tra tra tra"
+        "foo foo foo foo foo foo foo foo foo foo"
+        "foo foo foo foo foo foo foo foo foo foo";
 }
+
+.logo {
+    background-color: #F5F5F5;
+    grid-area: log;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.logoimg {
+    width: 50%;
+    height: 100%;
+}
+
+.playbody {
+    background-color: #EAEAEA;
+    grid-area: pli;
+}
+
+.playlists {
+    width: 100%;
+    padding: 8px;
+    text-align: center;
+}
+
+.playhead {
+    background-color: #F5F5F5;
+    grid-area: hea;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.album {
+    background-color: yellow;
+    grid-area: alb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.albumimg {
+    width: 95%;
+    height: 95%;
+    border: 3px solid #F5F5F5;
+}
+
+.trackinfo {
+    background-color: lightblue;
+    grid-area: trc;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: #F5F5F5;
+}
+
+
+.tracks {
+    background-color: pink;
+    grid-area: tra;
+}
+
+.footer {
+    background-color: lightcoral;
+    grid-area: foo;
+}
+
+

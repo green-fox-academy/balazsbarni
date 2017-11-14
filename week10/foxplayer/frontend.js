@@ -1,1 +1,3 @@
-alert('megy');
+'use strict';
+
+//alert('megy');
