@@ -43,7 +43,7 @@
 .playlists {
     width: 100%;
     padding: 8px;
-    text-align: center;
+    text-align: left;
 }
 
 .playhead {
