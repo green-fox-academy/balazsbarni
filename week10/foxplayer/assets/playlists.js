@@ -9,7 +9,7 @@ const playList = (function() {
             if (item.system === 0) {
                 rendered.className = 'playlists';
                 let noNative = document.createElement('div')
-                noNative.innerText = item.title;
+                noNative.innerText = item.playlist;
                 let deleteSym = document.createElement('div');
                 deleteSym.innerText = '×';
                 deleteSym.addEventListener('click', () => {
@@ -19,18 +19,21 @@ const playList = (function() {
                 rendered.appendChild(deleteSym);
                 temp.appendChild(rendered);
             } else if (item.system === 1) {
-                rendered.innerText = item.title;
+                rendered.innerText = item.playlist;
                 rendered.className = 'playlists';
                 temp.appendChild(rendered);
             }
         });
     };
 
+    let pass = function(){};
+
     let create = function(playlistName) {
         let playlist = document.querySelector('.playbody')
         playlist.innerHTML = '';
-        let postData = {"title": playlistName};
-        ajax('POST', 'playlists', render, postData);
+        let postData = {"playlist": playlistName};
+        ajax('POST', 'playlists', pass, postData);
+        ajax('GET', 'playlists', render);
     };
     
     let load = function() {
@@ -47,6 +50,7 @@ const playList = (function() {
 
         button.addEventListener('click', () => {
             create(input.value);
+            input.value = '';
             dialogRootElement.style.display = 'none';
         });
 
@@ -63,7 +67,8 @@ const playList = (function() {
         let playlist = document.querySelector('.playbody')
         playlist.innerHTML = '';
         let deleteData = {"id": id};
-        ajax('DELETE', 'playlists', render, deleteData);
+        ajax('DELETE', 'playlists', pass, deleteData);
+        ajax('GET', 'playlists', render);
     };
 
     let highlight = function() {}
