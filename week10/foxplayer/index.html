@@ -12,11 +12,9 @@
         <div class="logo"><img src="assets/foxplayer.png" class="logoimg" alt=""></div>
         <div class="playhead" >
             <div>Playlists</div>
-            <img src="assets/add.svg" width="25px" alt="">
+            <img src="assets/add.svg" width="25px" class="addlist" alt="">
         </div>
         <div class="playbody">
-            <div class="playlists">All tracks</div>
-            <div class="playlists">Favourites</div>
         </div>
         <div class="album">
             <img src="assets/music_placeholder.png" class="albumimg" alt="">
@@ -34,6 +32,7 @@
         <div class="tracks">
             <ol>
                 <li>Track 1</li>
+                <li>dfkjbgsdjk</li>
             </ol>
         </div>
         <div class="footer">Music
@@ -41,7 +40,14 @@
             <img src="assets/play.svg" width="10px" alt="">
             <img src="assets/forward.svg" alt="">
         </div>
-    </div>    
-    <script src="assets/frontend.js"></script>
+    </div>
+    <article class="dialog">
+        <div>×</div>
+        <h1>Add playlist</h1>
+        <input type="text">
+        <button>Submit</button>
+    </article>
+    <script src="assets/ajax.js"></script>
+    <script src="assets/playlists.js"></script>
 </body>
 </html>

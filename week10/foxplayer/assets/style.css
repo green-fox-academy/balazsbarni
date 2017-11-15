@@ -31,7 +31,7 @@
 }
 
 .logoimg {
-    width: 50%;
+    width: 45%;
     height: 100%;
 }
 
@@ -44,6 +44,8 @@
     width: 100%;
     padding: 8px;
     text-align: left;
+    display: flex;
+    flex-direction: row;
 }
 
 .playhead {
@@ -87,5 +89,3 @@
     background-color: lightcoral;
     grid-area: foo;
 }
-
-
