@@ -10,7 +10,7 @@ function ajax (command, urlEnd, callback, reqBody) {
     };
     let postData = null;
     if (reqBody) {
-        postData = JSON.stringify(reqBody);    
+        postData = JSON.stringify(reqBody);
     };
     xhr.send(postData);
 };
@@ -22,7 +22,7 @@ const test = function(item) {
 let getTest = function(callback){
     ajax('GET', 'playlists', callback);
 };
-//getTest(test);
+
 
 
 

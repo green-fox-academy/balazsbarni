@@ -92,3 +92,16 @@
     background-color: lightcoral;
     grid-area: foo;
 }
+
+
+.audio {
+	filter: hue-rotate(50deg);
+}
+
+.audio::-webkit-media-controls, audio::-webkit-media-controls-panel {
+	background: transparent;
+}
+
+.audio::-webkit-media-controls-play-button {
+	margin: 0 2rem;
+}

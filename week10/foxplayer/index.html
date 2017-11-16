@@ -21,12 +21,12 @@
         </div>
         <div class="trackinfo">
             <div class="track">
-                <div>Track title</div>
-                <div>Track artist</div>
+                <div class="title">Title</div>
+                <div class="artist">Track artist</div>
             </div>
             <div class="adder">
                 <img src="assets/add.svg" width="20px" alt="">
-                <img src="assets/star.svg" width="20px" alt="">
+                <img src="assets/star.svg" width="20px" alt="" class="star">
             </div>
         </div>
         <div class="tracks">
@@ -35,7 +35,7 @@
             <img src="assets/rewind.svg" alt="">
             <img src="assets/play.svg" width="10px" alt="">
             <img src="assets/forward.svg" alt="">
-            <audio controls="controls" id="audioPlayer" src="">
+            <audio controls="controls" autoplay="autoplay" id="audioPlayer" src="">
                 Your browser does not support the <code>audio</code> element.
             </audio>
         </div>
@@ -49,5 +49,6 @@
     <script src="assets/ajax.js"></script>
     <script src="assets/playlists.js"></script>
     <script src="assets/tracklist.js"></script>
+    <script src="assets/player.js"></script>
 </body>
 </html>

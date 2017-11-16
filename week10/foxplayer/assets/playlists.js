@@ -1,11 +1,17 @@
 'use strict';
 
 const playList = (function() {
-    
-    let render = function(item){
-        item.forEach(function(item) {
+    let playlistClickEvent = () =>{};
+
+
+    let render = function(items){
+        items.forEach(function(item) {
             let temp = document.querySelector('.playbody');
             let rendered = document.createElement('div');
+            rendered.addEventListener('click', () => {
+                let isAll = (item.playlist == 'All tracks')
+                playlistClickEvent(item.id, isAll);   
+            });
             if (item.system === 0) {
                 rendered.className = 'playlists';
                 let noNative = document.createElement('div')
@@ -71,18 +77,21 @@ const playList = (function() {
         ajax('GET', 'playlists', render);
     };
 
-    let highlight = function() {}
+
+    let setClickHandler = function(callback) {
+        playlistClickEvent = callback;
+    };
 
     return {
         load: load,
         create: create,
         addPlaylistDialog: addPlaylistDialog,
-        delete: plDelete
+        delete: plDelete,
+        setClickHandler: setClickHandler
     }
 })();
 
-playList.load()
-playList.addPlaylistDialog()
+
 //playList.delete('New pl')
 
 
