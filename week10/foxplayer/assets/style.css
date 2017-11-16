@@ -38,11 +38,14 @@
 .playbody {
     background-color: #EAEAEA;
     grid-area: pli;
+    height: 6 fr;
+    width: 300px;
+    overflow: scroll;
 }
 
 .playlists {
     width: 100%;
-    padding: 8px;
+    padding: 8px 0;
     text-align: left;
     display: flex;
     flex-direction: row;

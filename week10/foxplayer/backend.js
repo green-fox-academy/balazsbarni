@@ -13,8 +13,6 @@ var connection = mysql.createConnection({
 app.use('/assets', express.static('./assets'));
 app.use(express.json());
 
-
-
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/index.html');    
 });
@@ -46,8 +44,14 @@ app.delete('/playlists', function(req, res) {
         });
     });
 
-
-
+app.get('/tracks', function(req, res) {
+    connection.query('SELECT * FROM tracks;', function(error, result){
+        if(error) {
+            console.log(error.toString());
+        }
+        res.json(result);
+        });
+    });
 
 
 connection.connect(function(err){
