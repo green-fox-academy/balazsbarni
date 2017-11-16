@@ -11,6 +11,7 @@ var connection = mysql.createConnection({
 });
 
 app.use('/assets', express.static('./assets'));
+app.use('/music', express.static('./music'));
 app.use(express.json());
 
 app.get('/', function(req, res) {
