@@ -10,6 +10,8 @@ var connection = mysql.createConnection({
     database: "reddit"
 });
 
+app.use('/assets', express.static('./assets'));
+
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/index.html');    
 });
