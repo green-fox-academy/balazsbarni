@@ -2,6 +2,19 @@ body {
     background-color: orange;
 }
 
-.container {
-    background: blue
+.post {
+    background: blue;
+    display: flex;
+}
+
+.vote {
+    width: 100 px;
+    height: 10s0px;
+    background: gray;
+}
+
+.postbody {
+    width: 400px;
+    height: 100px;
+    background: pink;
 }

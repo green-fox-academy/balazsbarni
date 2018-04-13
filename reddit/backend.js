@@ -11,6 +11,7 @@ var connection = mysql.createConnection({
 });
 
 app.use('/assets', express.static('./assets'));
+app.use(express.json());
 
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/index.html');    
@@ -30,6 +31,35 @@ app.get('/posts', function(req, res) {
         res.json(result);
         });
 });
+
+app.get('/search/:score', function(req, res) {
+    connection.query('SELECT id, score FROM posts WHERE id="' + req.params.score + '";', function(error, result){
+        if(error) {
+            console.log(error.toString());
+        }
+        res.json(result);
+        });
+});
+
+app.put('/upvote/:id', function(req, res) {
+    connection.query('UPDATE posts SET score = score + 1 WHERE id ="' + req.params.id + '";', function(error, result){
+        if(error) {
+            console.log(error.toString());
+        }
+        res.json(result);
+        });
+});
+
+app.put('/downvote/:id', function(req, res) {
+    connection.query('UPDATE posts SET score = score - 1 WHERE id ="' + req.params.id + '";', function(error, result){
+        if(error) {
+            console.log(error.toString());
+        }
+        res.json(result);
+        });
+});
+
+
 
 connection.connect(function(err){
     if(err){

@@ -1,6 +1,5 @@
 'use strict';
 const url = 'http://localhost:3300/';
-var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 function ajax (command, urlEnd, callback, reqBody) {
     let xhr = new XMLHttpRequest();
@@ -24,4 +23,4 @@ let getTest = function(callback){
     ajax('GET', 'posts', callback);
 };
 
-getTest(test);
+// getTest(test);
