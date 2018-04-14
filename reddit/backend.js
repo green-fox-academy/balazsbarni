@@ -59,7 +59,23 @@ app.put('/downvote/:id', function(req, res) {
         });
 });
 
+app.post('/posts', function(req, res) {
+    connection.query('INSERT INTO posts (title, url)  VALUES("' + req.body.title +'", "' + req.body.url + '");', function(error, result) {
+        if(error) {
+            console.log(error.toString());
+        }
+        res.json({'Result': 'success'});
+        });
+    });
 
+    app.delete('/posts', function(req, res) {
+        connection.query('DELETE FROM posts WHERE id="' + req.body.id +'";', function(error, result) {
+            if(error) {
+                console.log(error.toString());
+            }
+            res.json({'Result': 'success'});
+            });
+        });
 
 connection.connect(function(err){
     if(err){
