@@ -16,4 +16,6 @@ let renderPosts = function(item)  {
     console.log(item);
 };
 
+console.log('barmi')
+
 getPosts(renderPosts);
